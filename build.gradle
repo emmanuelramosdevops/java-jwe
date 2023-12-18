@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.5'
+	id 'io.spring.dependency-management' version '1.1.3'
+}
+
+group = 'com.jwe'
+version = '1.0.0'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+bootRun {
+	systemProperties System.properties
+}
+
+dependencies {
+
+	/** Spring Boot **/
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	/** Logback **/
+	implementation 'ch.qos.logback:logback-core:1.4.11'
+	implementation 'ch.qos.logback:logback-classic:1.4.11'
+
+	/** Utils **/
+	implementation 'com.nimbusds:nimbus-jose-jwt:9.37'
+	implementation 'org.bouncycastle:bcprov-jdk18on:1.76'
+	implementation 'org.apache.commons:commons-lang3:3.14.0'
+
+	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
